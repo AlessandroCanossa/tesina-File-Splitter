@@ -57,8 +57,6 @@ public class SplitWorker extends SwingWorker<Void, Void> {
 			setProgress((int) progress);
 		}
 
-		setProgress(100);
-		panel.getTableModel().updateStatus(index, "completed");
 		return null;
 	}
 
@@ -69,6 +67,8 @@ public class SplitWorker extends SwingWorker<Void, Void> {
 	 */
 	@Override
 	protected void done() {
+		setProgress(100);
+		panel.getTableModel().updateStatus(index, "completed");
 		completed[index] = true;
 
 		for (boolean b : completed) {
