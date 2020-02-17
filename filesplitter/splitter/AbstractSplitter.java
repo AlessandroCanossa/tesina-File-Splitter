@@ -37,6 +37,9 @@ public abstract class AbstractSplitter implements Runnable {
 	 */
 	private long bytesPerPart;
 
+	/**
+	 * Byte scritti. Viene utilizzata per l'aggiornamento della barra dei progressi.
+	 */
 	private long byteWritten;
 
 	/**
@@ -156,9 +159,14 @@ public abstract class AbstractSplitter implements Runnable {
 		return file;
 	}
 
-	public String getFileName(){
-	    return file.getPath();
-    }
+	/**
+	 * Restituisce il percorso del file.
+	 *
+	 * @return percorso del file.
+	 */
+	public String getFileName() {
+		return file.getPath();
+	}
 
 
 	/**
@@ -188,6 +196,11 @@ public abstract class AbstractSplitter implements Runnable {
 		this.bytesPerPart = bytesToRead;
 	}
 
+	/**
+	 * Restituisce il numero dei byte scritti.
+	 *
+	 * @return numero dei byte scritti.
+	 */
 	public long getByteWritten() {
 		return byteWritten;
 	}
