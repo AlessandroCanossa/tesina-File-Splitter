@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="filesplitter.gui.SplitterPanel">
+  <grid id="27dc6" binding="rootPanel" layout-manager="GridLayoutManager" row-count="3" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="5" left="5" bottom="5" right="5"/>
+    <constraints>
+      <xy x="20" y="20" width="445" height="341"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <toolbar id="2295b" binding="toolBar">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="-1" height="20"/>
+          </grid>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="b1b8e" class="javax.swing.JButton" binding="add">
+            <constraints/>
+            <properties>
+              <opaque value="true"/>
+              <selected value="false"/>
+              <text value="Add"/>
+            </properties>
+          </component>
+          <component id="53d23" class="javax.swing.JButton" binding="delete">
+            <constraints/>
+            <properties>
+              <text value="Delete"/>
+            </properties>
+          </component>
+          <component id="83255" class="javax.swing.JButton" binding="modify">
+            <constraints/>
+            <properties>
+              <text value="Update"/>
+            </properties>
+          </component>
+          <component id="fa061" class="javax.swing.JButton" binding="start">
+            <constraints/>
+            <properties>
+              <text value="Start"/>
+            </properties>
+          </component>
+          <component id="c9469" class="javax.swing.JButton" binding="merge">
+            <constraints/>
+            <properties>
+              <text value="Merge"/>
+            </properties>
+          </component>
+        </children>
+      </toolbar>
+      <component id="88ab3" class="javax.swing.JProgressBar" binding="progressBar">
+        <constraints>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <indeterminate value="false"/>
+          <orientation value="0"/>
+          <stringPainted value="false"/>
+          <toolTipText value=""/>
+        </properties>
+      </component>
+      <scrollpane id="35858" binding="scrollPane" custom-create="true">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children/>
+      </scrollpane>
+    </children>
+  </grid>
+</form>

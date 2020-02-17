@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="filesplitter.gui.FileManager">
+  <grid id="27dc6" binding="rootPanel" layout-manager="GridLayoutManager" row-count="12" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="5" left="5" bottom="5" right="5"/>
+    <constraints>
+      <xy x="20" y="20" width="273" height="370"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <component id="16caa" class="javax.swing.JTextField" binding="fileName">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties>
+          <editable value="false"/>
+          <text value="File Path"/>
+        </properties>
+      </component>
+      <component id="9c672" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="2" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Tipo di divisione:"/>
+        </properties>
+      </component>
+      <component id="a8f17" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="File name:"/>
+        </properties>
+      </component>
+      <component id="74" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="7" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="136" height="21"/>
+          </grid>
+        </constraints>
+        <properties>
+          <horizontalAlignment value="10"/>
+          <text value="Part size:"/>
+        </properties>
+      </component>
+      <component id="b0cee" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="9" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <horizontalAlignment value="10"/>
+          <text value="Number of parts:"/>
+        </properties>
+      </component>
+      <component id="42b6e" class="javax.swing.JTextField" binding="partSize">
+        <constraints>
+          <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="50" height="-1"/>
+          </grid>
+        </constraints>
+        <properties>
+          <text value=""/>
+        </properties>
+      </component>
+      <component id="147ba" class="javax.swing.JTextField" binding="numPart">
+        <constraints>
+          <grid row="10" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="4" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties/>
+      </component>
+      <component id="fbafb" class="javax.swing.JButton" binding="applyButton" default-binding="true">
+        <constraints>
+          <grid row="11" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Apply"/>
+        </properties>
+      </component>
+      <component id="3b03c" class="javax.swing.JRadioButton" binding="sizeDivision" default-binding="true">
+        <constraints>
+          <grid row="3" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="8" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <doubleBuffered value="false"/>
+          <selected value="false"/>
+          <text value="Size"/>
+        </properties>
+      </component>
+      <component id="a6264" class="javax.swing.JRadioButton" binding="zipDivision" default-binding="true">
+        <constraints>
+          <grid row="4" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="8" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Size + compression"/>
+        </properties>
+      </component>
+      <component id="53f4e" class="javax.swing.JRadioButton" binding="partDivision" default-binding="true">
+        <constraints>
+          <grid row="6" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="8" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="# of parts"/>
+        </properties>
+      </component>
+      <component id="94119" class="javax.swing.JComboBox" binding="comboBox" default-binding="true">
+        <constraints>
+          <grid row="8" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <model>
+            <item value="B"/>
+            <item value="KB"/>
+            <item value="MB"/>
+            <item value="GB"/>
+          </model>
+        </properties>
+      </component>
+      <component id="ecec2" class="javax.swing.JButton" binding="cancelButton" default-binding="true">
+        <constraints>
+          <grid row="11" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Cancel"/>
+        </properties>
+      </component>
+      <component id="fc44f" class="javax.swing.JRadioButton" binding="cryptoDivision">
+        <constraints>
+          <grid row="5" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="8" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Size + encryption"/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+</form>
