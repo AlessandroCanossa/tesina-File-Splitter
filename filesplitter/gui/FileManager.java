@@ -100,7 +100,7 @@ public abstract class FileManager {
 	 * @param splitterFrame frame del pannello chiamante
 	 * @param file          file da gestire
 	 */
-	public FileManager(JDialog parent, Vector<AbstractSplitter> splitters, SplitterPanel panel, JFrame splitterFrame, File file) {
+	FileManager(JDialog parent, Vector<AbstractSplitter> splitters, SplitterPanel panel, JFrame splitterFrame, File file) {
 		this.splitterPanel = panel;
 		this.parent = parent;
 		this.splitters = splitters;
@@ -181,7 +181,7 @@ public abstract class FileManager {
 	 *
 	 * @return dimensione delle parti
 	 */
-	public Integer partSize() {
+	Integer partSize() {
 		if (!isInteger(partSize.getText()))
 			errorPopup();
 
@@ -215,7 +215,7 @@ public abstract class FileManager {
 	 *
 	 * @return numero di parti.
 	 */
-	public Integer partNum() {
+	Integer partNum() {
 		if (!isInteger(numPart.getText()))
 			errorPopup();
 
@@ -231,7 +231,7 @@ public abstract class FileManager {
 	/**
 	 * Metodo che definisce il popup in caso di errato/mancato inserimento dei valori di parti e dimensioni.
 	 */
-	public void errorPopup() {
+	private void errorPopup() {
 		JOptionPane.showMessageDialog(this.parent, "Insert a valid number", "Error", JOptionPane.ERROR_MESSAGE);
 	}
 
@@ -241,7 +241,7 @@ public abstract class FileManager {
 	 * @param s stringa da controllare
 	 * @return vero se la stringa contiene solo numeri, falso altrimenti
 	 */
-	public boolean isInteger(String s) {
+	private boolean isInteger(String s) {
 		for (int i = 0; i < s.length(); i++) {
 			if (s.charAt(i) < 48 || s.charAt(i) > 56)
 				return false;
@@ -259,7 +259,7 @@ public abstract class FileManager {
 	 *
 	 * @return pannello di root
 	 */
-	public JPanel getRootPanel() {
+	JPanel getRootPanel() {
 		return rootPanel;
 	}
 
@@ -268,7 +268,7 @@ public abstract class FileManager {
 	 *
 	 * @return campo di testo del nome del file
 	 */
-	public JTextField getFileName() {
+	JTextField getFileName() {
 		return fileName;
 	}
 
@@ -277,7 +277,7 @@ public abstract class FileManager {
 	 *
 	 * @return radiobutton della divisione per dimensione.
 	 */
-	public JRadioButton getSizeDivision() {
+	JRadioButton getSizeDivision() {
 		return sizeDivision;
 	}
 
@@ -286,7 +286,7 @@ public abstract class FileManager {
 	 *
 	 * @return radiobutton della divisione con compressione
 	 */
-	public JRadioButton getZipDivision() {
+	JRadioButton getZipDivision() {
 		return zipDivision;
 	}
 
@@ -295,7 +295,7 @@ public abstract class FileManager {
 	 *
 	 * @return radiobutton della divisione per parti.
 	 */
-	public JRadioButton getPartDivision() {
+	JRadioButton getPartDivision() {
 		return partDivision;
 	}
 
@@ -304,7 +304,7 @@ public abstract class FileManager {
 	 *
 	 * @return radiobutton della divisione criptata.
 	 */
-	public JRadioButton getCryptoDivision() {
+	JRadioButton getCryptoDivision() {
 		return cryptoDivision;
 	}
 
@@ -313,7 +313,7 @@ public abstract class FileManager {
 	 *
 	 * @return campo di testo della dimensione delle parti
 	 */
-	public JTextField getPartSize() {
+	JTextField getPartSize() {
 		return partSize;
 	}
 
@@ -323,7 +323,7 @@ public abstract class FileManager {
 	 *
 	 * @return campo di testo del numero delle parti
 	 */
-	public JTextField getNumPart() {
+	JTextField getNumPart() {
 		return numPart;
 	}
 
@@ -341,7 +341,7 @@ public abstract class FileManager {
 	 *
 	 * @return vettore degli splitter
 	 */
-	public Vector<AbstractSplitter> getSplitters() {
+	Vector<AbstractSplitter> getSplitters() {
 		return splitters;
 	}
 
@@ -350,7 +350,7 @@ public abstract class FileManager {
 	 *
 	 * @return pannello chiamante
 	 */
-	public SplitterPanel getSplitterPanel() {
+	SplitterPanel getSplitterPanel() {
 		return splitterPanel;
 	}
 }

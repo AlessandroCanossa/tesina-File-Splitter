@@ -26,7 +26,7 @@ public class ModFile extends FileManager {
 	 * @param splitterFrame frame del pannello chiamante
 	 * @param file          file da gestire
 	 */
-	public ModFile(JDialog parent, Vector<AbstractSplitter> splitters, SplitterPanel panel, JFrame splitterFrame, File file) {
+	ModFile(JDialog parent, Vector<AbstractSplitter> splitters, SplitterPanel panel, JFrame splitterFrame, File file) {
 		super(parent, splitters, panel, splitterFrame, file);
 
 		indexOfFile();
@@ -77,9 +77,9 @@ public class ModFile extends FileManager {
 	/**
 	 * Metodo che imposta lo stato iniziale del file manager con le scelte precedenti relative al file selezionato.
 	 */
-	public void indexOfFile() {
+	private void indexOfFile() {
 		for (AbstractSplitter s : getSplitters()) {
-			if (s.getFile().equals(getFile())) {
+			if (s.getStartFile().equals(getFile())) {
 				switch (s.getType()) {
 					case DEFAULT: {
 						getSizeDivision().setSelected(true);

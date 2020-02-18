@@ -36,7 +36,6 @@ public class CryptoMerger extends AbstractMerger {
 		this.psw = psw;
 	}
 
-
 	@Override
 	public InputStream getInputStream() {
 		FileInputStream in = null;

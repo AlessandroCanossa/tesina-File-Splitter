@@ -26,10 +26,20 @@ public final class Utility {
 	 */
 	public static final int GB = (int) Math.pow(10, 9);
 
+	/**
+	 * Costante relativa all'estensione di divisione
+	 */
 	public static final String SPLIT_EXTENSION = ".par";
 
+	
+	/**
+	 * Costante relativa all'estensione di divisione con criptazione
+	 */
 	public static final String CRYPTO_EXTENSION = ".crypt";
 
+	/**
+	 * Costante relativa all'estensione di divisione con compressione
+	 */
 	public static final String ZIP_EXTENSION = ".zip";
 
 

@@ -25,7 +25,7 @@ public class AddFile extends FileManager {
 	 * @param splitterFrame frame del pannello chiamante
 	 * @param file          file da gestire
 	 */
-	public AddFile(JDialog parent, Vector<AbstractSplitter> splitters, SplitterPanel panel, JFrame splitterFrame, File file) {
+	AddFile(JDialog parent, Vector<AbstractSplitter> splitters, SplitterPanel panel, JFrame splitterFrame, File file) {
 		super(parent, splitters, panel, splitterFrame, file);
 	}
 
