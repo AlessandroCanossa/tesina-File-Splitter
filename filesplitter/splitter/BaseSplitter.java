@@ -13,38 +13,37 @@ import java.io.OutputStream;
  */
 public class BaseSplitter extends AbstractSplitter {
 
-    /**
-     * Metodo costruttore.
-     *
-     * @param value    dimensione delle parti divise o numero di parti
-     * @param fileName nome del file di partenza
-     * @param type     indica il tipo di divisione da eseguire
-     */
-    public BaseSplitter(long value, File fileName, Utility.type type) {
-        super(value, fileName, type);
-    }
+	/**
+	 * Metodo costruttore.
+	 *
+	 * @param value    dimensione delle parti divise o numero di parti
+	 * @param fileName nome del file di partenza
+	 * @param type     indica il tipo di divisione da eseguire
+	 */
+	public BaseSplitter(long value, File fileName, Utility.type type) {
+		super(value, fileName, type);
+	}
 
-    @Override
-    public OutputStream getOutputStream(int times) {
-        FileOutputStream out = null;
-        try {
-            setBytesToRead(getSplitSize());
+	@Override
+	public OutputStream getOutputStream(int times) {
+		FileOutputStream out = null;
+		try {
+			setBytesToRead(getSplitSize());
 
-            out = new FileOutputStream(this.getFileName() + times + Utility.SPLIT_EXTENSION );
-        } catch (
-                IOException e) {
-            e.printStackTrace();
-        }
-        return out;
-    }
+			out = new FileOutputStream(this.getOutputPath() + times + Utility.SPLIT_EXTENSION);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return out;
+	}
 
-    @Override
-    public void closeOutputStream(OutputStream out) {
-        try {
-            out.flush();
-            out.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+	@Override
+	public void closeOutputStream(OutputStream out) {
+		try {
+			out.flush();
+			out.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }

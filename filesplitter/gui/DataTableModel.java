@@ -21,7 +21,7 @@ public class DataTableModel extends AbstractTableModel {
 	/**
 	 * Metodo costruttore.
 	 */
-	public DataTableModel() {
+	DataTableModel() {
 		this.data = new ArrayList<>();
 	}
 
@@ -100,7 +100,7 @@ public class DataTableModel extends AbstractTableModel {
 	 *
 	 * @param fileData dati della riga da aggiungere.
 	 */
-	public void addRow(FileData fileData) {
+	void addRow(FileData fileData) {
 		this.data.add(fileData);
 		this.fireTableDataChanged();
 	}
@@ -110,7 +110,7 @@ public class DataTableModel extends AbstractTableModel {
 	 *
 	 * @param row numero di riga da rimuovere
 	 */
-	public void deleteRow(int row) throws IndexOutOfBoundsException {
+	void deleteRow(int row) throws IndexOutOfBoundsException {
 		this.data.remove(row);
 		this.fireTableDataChanged();
 	}
@@ -121,12 +121,17 @@ public class DataTableModel extends AbstractTableModel {
 	 * @param row    numero di riga.
 	 * @param status nuovo stato.
 	 */
-	public void updateStatus(int row, String status) {
+	void updateStatus(int row, String status) {
 		this.data.get(row).setStatus(status);
 		this.fireTableDataChanged();
 	}
 
-	public void modifySplit(int row, FileData data) {
+	/**
+	 * Metodo per la modifica dei dati di uno splitter in coda.
+	 * @param row riga che identifica lo splitter
+	 * @param data nuovi dati dello splitter.
+	 */
+	void modifySplit(int row, FileData data) {
 		this.data.set(row, data);
 		this.fireTableDataChanged();
 	}

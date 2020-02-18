@@ -30,8 +30,8 @@ public class ZipSplitter extends AbstractSplitter {
 	public OutputStream getOutputStream(int times) {
 		ZipOutputStream zout = null;
 		try {
-			zout = new ZipOutputStream(new FileOutputStream(super.getFileName() + times + Utility.ZIP_EXTENSION + Utility.SPLIT_EXTENSION));
-			zout.putNextEntry(new ZipEntry(super.getFile().getName() + Utility.SPLIT_EXTENSION));
+			zout = new ZipOutputStream(new FileOutputStream(super.getOutputPath() + times + Utility.ZIP_EXTENSION + Utility.SPLIT_EXTENSION));
+			zout.putNextEntry(new ZipEntry(super.getStartFile().getName() + Utility.SPLIT_EXTENSION));
 
 			setBytesToRead(getSplitSize());
 		} catch (IOException e) {

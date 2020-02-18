@@ -2,6 +2,7 @@ package filesplitter.merger;
 
 import filesplitter.utility.Utility;
 
+import javax.swing.*;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -29,11 +30,9 @@ public abstract class AbstractMerger implements Runnable {
      * @param fileName primo file da prendere in ingresso
      */
     public AbstractMerger(File fileName) {
-//        this.fileName = fileName;
         files = new Vector<>();
         files.add(fileName);
         setFiles();
-
         outputFile = fileName.getPath().substring(0, fileName.getPath().lastIndexOf(1 + "."));
     }
 
@@ -44,12 +43,12 @@ public abstract class AbstractMerger implements Runnable {
     @Override
     public void run(){
         merge();
-    };
+    }
 
     /**
      * Procedura di unione dei file.
      */
-    public void merge() {
+	private void merge() {
         try {
 
             FileOutputStream outputStream = new FileOutputStream(this.outputFile);
@@ -60,13 +59,13 @@ public abstract class AbstractMerger implements Runnable {
                 while ((buffer = inputStream.readNBytes(Utility.bufferSize)).length != 0) {
                     outputStream.write(buffer);
                 }
-
                 closeInputStream(inputStream);
             }
 
             outputStream.close();
 
         } catch (IOException e) {
+            JOptionPane.showMessageDialog(JOptionPane.getRootFrame(), "Impossibile completare l'unione del file!", "Error!", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }
     }
@@ -88,7 +87,7 @@ public abstract class AbstractMerger implements Runnable {
     /**
      * Inserisce nel vettore files i file da unire.
      */
-    public void setFiles() {
+	private void setFiles() {
         for (int i = 2; ; i++) {
             File file = new File(this.files.firstElement().getPath().replace(1 + ".", i + "."));
             if (file.exists()) {
@@ -107,5 +106,4 @@ public abstract class AbstractMerger implements Runnable {
     public File getFile() {
         return files.remove(0);
     }
-
 }

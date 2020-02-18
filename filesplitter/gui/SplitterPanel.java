@@ -139,7 +139,7 @@ public class SplitterPanel implements PropertyChangeListener {
 	 *
 	 * @param fileData Dati del file da tenere nella tabella.
 	 */
-	public void addRowToTable(FileData fileData) {
+	void addRowToTable(FileData fileData) {
 		tableModel.addRow(fileData);
 	}
 
@@ -148,7 +148,7 @@ public class SplitterPanel implements PropertyChangeListener {
 	 *
 	 * @param fileData Dati del file da modificare.
 	 */
-	public void modifyRow(FileData fileData) {
+	void modifyRow(FileData fileData) {
 		tableModel.modifySplit(table.getSelectedRow(), fileData);
 	}
 
@@ -157,13 +157,13 @@ public class SplitterPanel implements PropertyChangeListener {
 	 *
 	 * @return modello della tabella.
 	 */
-	public DataTableModel getTableModel() {
+	DataTableModel getTableModel() {
 		return tableModel;
 	}
 
 	/**
 	 * Metodo che aggiorna il completamento della barra di caricamento.
-	 * Viene chiamato quando la bound property progress di ProgressWorker viene modificata.
+	 * Viene chiamato quando la bound property progress di SplitWorker viene modificata.
 	 *
 	 * @param e valore della bound property progress
 	 */
@@ -209,6 +209,8 @@ public class SplitterPanel implements PropertyChangeListener {
 			progressBar.setMaximum(100 * splitter.size());
 			boolean[] completed = new boolean[splitter.size()];
 			Arrays.fill(completed, false);
+
+			rootPanel.setEnabled(false);
 
 			for (int i = 0; i < splitter.size(); i++) {
 				SplitWorker pw = new SplitWorker(i, SplitterPanel.this, completed);
@@ -294,7 +296,7 @@ public class SplitterPanel implements PropertyChangeListener {
 		public void actionPerformed(ActionEvent actionEvent) {
 			if (table.getSelectedRow() != -1) {
 				JDialog modFile = new JDialog();
-				FileManager fileManager = new ModFile(modFile, splitter, SplitterPanel.this, parent, splitter.get(table.getSelectedRow()).getFile());
+				FileManager fileManager = new ModFile(modFile, splitter, SplitterPanel.this, parent, splitter.get(table.getSelectedRow()).getStartFile());
 				modFile.add(fileManager.getRootPanel());
 				modFile.setResizable(false);
 				modFile.pack();
@@ -343,7 +345,7 @@ public class SplitterPanel implements PropertyChangeListener {
 		 *
 		 * @param file prima parte dei file da unire.
 		 */
-		public MergeWorker(File file) {
+		MergeWorker(File file) {
 			if (file.getName().contains(Utility.CRYPTO_EXTENSION)) {
 				String psw = "";
 				while (psw.isEmpty())
@@ -363,13 +365,10 @@ public class SplitterPanel implements PropertyChangeListener {
 		 */
 		@Override
 		protected Void doInBackground() {
+			rootPanel.setEnabled(false);
 			Thread t = new Thread(merger);
 			t.start();
-
-			while (t.isAlive()) {
-				JOptionPane.showMessageDialog(rootPanel, "Unione in corso", "", JOptionPane.INFORMATION_MESSAGE);
-			}
-
+			JOptionPane.showMessageDialog(rootPanel, "Unione in corso", "", JOptionPane.INFORMATION_MESSAGE);
 			return null;
 		}
 
@@ -380,6 +379,7 @@ public class SplitterPanel implements PropertyChangeListener {
 		@Override
 		protected void done() {
 			JOptionPane.showMessageDialog(rootPanel, "Unione completata", "", JOptionPane.INFORMATION_MESSAGE);
+			rootPanel.setEnabled(true);
 		}
 	}
 }

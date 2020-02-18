@@ -20,7 +20,7 @@ public abstract class AbstractSplitter implements Runnable {
 	/**
 	 * File da dividere.
 	 */
-	private File file;
+	private File startFile;
 
 	/**
 	 * Numero di parti in cui dividere il file.
@@ -42,16 +42,18 @@ public abstract class AbstractSplitter implements Runnable {
 	 */
 	private long byteWritten;
 
+	private String outputDirectory;
+
 	/**
 	 * Metodo costruttore per divisione per dimensione.
 	 *
-	 * @param value dimensione delle parti o numero delle parti
-	 * @param file  nome del file di partenza
-	 * @param type  indica il tipo di divisione da eseguire
+	 * @param value     dimensione delle parti o numero delle parti
+	 * @param startFile nome del file di partenza
+	 * @param type      indica il tipo di divisione da eseguire
 	 */
-	public AbstractSplitter(long value, File file, Utility.type type) {
+	AbstractSplitter(long value, File startFile, Utility.type type) {
 		if (value > 0) {
-			this.file = file;
+			this.startFile = startFile;
 			this.type = type;
 
 			this.byteWritten = 0;
@@ -59,9 +61,12 @@ public abstract class AbstractSplitter implements Runnable {
 			// in base al type definisco la varibile da inizializzare a value
 			if (this.type == Utility.type.PART) {
 				this.parts = (int) value;
-				this.splitSize = this.file.length() / this.parts;
-			} else
+				this.splitSize = this.startFile.length() / this.parts;
+			} else {
 				this.splitSize = value;
+			}
+
+			makeDirectory();
 		}
 	}
 
@@ -74,13 +79,12 @@ public abstract class AbstractSplitter implements Runnable {
 		split();
 	}
 
-
 	/**
 	 * Procedura di divisione dei file.
 	 */
-	public void split() {
+	private void split() {
 		try {
-			FileInputStream inputStream = new FileInputStream(this.getFile());
+			FileInputStream inputStream = new FileInputStream(this.getStartFile());
 
 			int times = 1;
 			while (inputStream.available() != 0) {
@@ -155,19 +159,33 @@ public abstract class AbstractSplitter implements Runnable {
 	 *
 	 * @return file di input
 	 */
-	public File getFile() {
-		return file;
+	public File getStartFile() {
+		return startFile;
 	}
 
 	/**
-	 * Restituisce il percorso del file.
+	 * Restituisce il percorso del file di output.
+	 * Nel caso esista una directory di output, restituisce il percorso con la directory
+	 * altrimenti resitutisce il percoso del file di partenza.
 	 *
-	 * @return percorso del file.
+	 * @return percorso del file di output.
 	 */
-	public String getFileName() {
-		return file.getPath();
+	String getOutputPath() {
+		if (new File(outputDirectory).isDirectory()) {
+			return outputDirectory + File.separator + startFile.getName();
+		} else
+			return startFile.getPath();
 	}
 
+	/**
+	 * Crea una directory di output per i file in scrittura.
+	 */
+	private void makeDirectory() {
+		outputDirectory = startFile.getPath().substring(0, startFile.getPath().lastIndexOf('.'));
+		boolean bool = new File(outputDirectory).mkdir();
+		if (!bool)
+			System.err.println("Impossibile creare la cartella di destinazione.s");
+	}
 
 	/**
 	 * Restituisce il numero massimo di parti
@@ -192,7 +210,7 @@ public abstract class AbstractSplitter implements Runnable {
 	 *
 	 * @param bytesToRead dimensione di ogni file
 	 */
-	public void setBytesToRead(long bytesToRead) {
+	void setBytesToRead(long bytesToRead) {
 		this.bytesPerPart = bytesToRead;
 	}
 

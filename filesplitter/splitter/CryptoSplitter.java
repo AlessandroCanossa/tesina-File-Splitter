@@ -49,7 +49,7 @@ public class CryptoSplitter extends AbstractSplitter {
 		try {
 			setBytesToRead(getSplitSize());
 
-			out = new FileOutputStream(this.getFileName() + times + Utility.CRYPTO_EXTENSION + Utility.SPLIT_EXTENSION);
+			out = new FileOutputStream(this.getOutputPath() + times + Utility.CRYPTO_EXTENSION + Utility.SPLIT_EXTENSION);
 
 			if (times == 1) {
 				out.write(cipher.getIV());

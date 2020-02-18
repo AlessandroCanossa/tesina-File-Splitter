@@ -33,7 +33,7 @@ public class SplitWorker extends SwingWorker<Void, Void> {
 	 * @param panel     pannello chiamante
 	 * @param completed array delle divisioni completate
 	 */
-	public SplitWorker(int i, SplitterPanel panel, boolean[] completed) {
+	SplitWorker(int i, SplitterPanel panel, boolean[] completed) {
 		this.index = i;
 		this.panel = panel;
 		this.completed = completed;
@@ -45,7 +45,7 @@ public class SplitWorker extends SwingWorker<Void, Void> {
 	 * @return null
 	 */
 	@Override
-	protected Void doInBackground() {
+	protected Void doInBackground() throws InterruptedException {
 		setProgress(0);
 		AbstractSplitter sp = panel.getSplitter().get(index);
 		Thread t = new Thread(sp);
@@ -53,7 +53,7 @@ public class SplitWorker extends SwingWorker<Void, Void> {
 
 		panel.getTableModel().updateStatus(index, "current");
 		while (t.getState() != Thread.State.TERMINATED) {
-			double progress = ((double) sp.getByteWritten() / sp.getFile().length() * 100f);
+			double progress = ((double) sp.getByteWritten() / sp.getStartFile().length() * 100f);
 			setProgress((int) progress);
 		}
 
@@ -78,5 +78,6 @@ public class SplitWorker extends SwingWorker<Void, Void> {
 
 		JOptionPane.showMessageDialog(panel.getRootPanel(), "Esecuzione completata!", "", JOptionPane.INFORMATION_MESSAGE);
 		panel.getSplitter().removeAllElements();
+		panel.getRootPanel().setEnabled(true);
 	}
 }
